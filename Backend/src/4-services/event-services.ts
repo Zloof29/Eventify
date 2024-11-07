@@ -25,8 +25,10 @@ class EventServices {
   }
 
   public async addEvent(event: EventModel): Promise<EventModel> {
-    const sql =
-      "insert into events(name, description, startDateTime, endDateTime, location, organizerId, category, ticketPrice) values(?, ?, ?, ?, ?, ?, ?, ?";
+    const sql = `
+      INSERT INTO events (name, description, startDateTime, endDateTime, location, organizerId, category, ticketPrice)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `;
 
     const values = [
       event.name,
@@ -39,10 +41,8 @@ class EventServices {
       event.ticketPrice,
     ];
 
-    const info: OkPacketParams = await dal.execute(sql, values);
-
-    event = await this.getOneEvent(info.insertId);
-
+    const result: any = await dal.execute(sql, values);
+    event.id = result.insertId;
     return event;
   }
 
@@ -66,4 +66,14 @@ class EventServices {
 
     return event;
   }
+
+  public async deleteEvent(id: number): Promise<void> {
+    const sql = "delete from events where id = ?";
+
+    const info: OkPacketParams = await dal.execute(sql, [id]);
+
+    if (info.affectedRows === 0) throw new ResourceNotFoundError(id);
+  }
 }
+
+export const eventServices = new EventServices();
