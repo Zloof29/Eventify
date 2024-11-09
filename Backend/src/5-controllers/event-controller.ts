@@ -12,7 +12,7 @@ class EventController {
   public constructor() {
     this.router.get("/events", this.getAllEvents);
     this.router.get("/event/:id", this.getOneEvent);
-    this.router.post("/events", this.addEvent);
+    this.router.post("/event", this.addEvent);
     this.router.put("/event/:id", this.editEvent);
     this.router.delete("/event/:id", this.deleteEvent);
   }
