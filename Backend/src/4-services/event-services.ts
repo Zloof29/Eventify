@@ -58,6 +58,7 @@ class EventServices {
       event.location,
       event.category,
       event.ticketPrice,
+      event.id,
     ];
 
     const info: OkPacketParams = await dal.execute(sql, values);
