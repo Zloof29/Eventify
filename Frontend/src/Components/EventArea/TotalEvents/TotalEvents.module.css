@@ -1,0 +1,4 @@
+.Container > .Border {
+  border: 1px solid;
+  padding: 3px;
+}

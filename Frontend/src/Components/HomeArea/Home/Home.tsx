@@ -1,9 +1,5 @@
-import "./Home.css";
+import css from "./Home.module.css";
 
 export function Home(): JSX.Element {
-    return (
-        <div className="Home">
-			Home...
-        </div>
-    );
+  return <div className={css.Container}>Home...</div>;
 }
