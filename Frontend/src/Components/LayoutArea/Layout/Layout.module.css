@@ -1,0 +1,39 @@
+.Container {
+  height: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 1fr 0.1fr 4fr 0.1fr auto;
+  grid-template-areas:
+    "header header"
+    "aside aside"
+    "main main"
+    "footer footer";
+}
+
+.Header {
+  grid-area: header;
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+.Sidebar {
+  grid-area: sidebar;
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+.Main {
+  grid-area: main;
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  overflow: auto;
+}
+.Footer {
+  grid-area: footer;
+  grid-column: 1 / span 2;
+  grid-row: 4;
+}
+
+.Container,
+.Container > * {
+  border: 1px solid;
+}
